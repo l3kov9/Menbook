@@ -1,0 +1,62 @@
+﻿@model CarModelListingViewModel
+@{
+    ViewData["Title"] = $"{Model.MakeName}";
+}
+
+<h2 class="text-center"><em>@ViewData["Title"]</em></h2>
+
+@foreach (var car in Model.Models)
+{
+    var carImageUrl = car.ImageUrl == null ? "http://forevervacationrentals.com/images/no-image-available2.jpg" : car.ImageUrl;
+
+    <div class="col-md-6">
+        <div class="panel panel-default panel-front">
+            <h2 class="text-center">@car.Name</h2>
+
+            <div class="panel-heading">
+                <h4 class="panel-title"><img style='width: 100%;' src="@carImageUrl" height="250" alt="@Model.MakeName @car.Name"></h4>
+            </div>
+            <div class="panel-body">
+                <div class="text-right">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a class="btn btn-success col-md-6 col-md-offset-3">Leave Review</a>
+                        <br /><br />
+
+                        @if (car.ImageUrl == null)
+                        {
+                            <form asp-action="AddImg" method="post">
+                                <div class="col-md-8">
+                                    <input type="hidden" name="Make" value="@Model.MakeName" />
+                                    <input type="hidden" name="Model" value="@car.Name" />
+
+                                    <input asp-for="@car.ImageUrl" name="ImageUrl" class="form-control" placeholder="Upload Picture Url for @Model.MakeName @car.Name" />
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="submit" class="btn btn-primary form-control" value="Save Image" />
+                                </div>
+                            </form>
+                        }
+                        else
+                        {
+                            <form method="post" asp-action="DeleteImg">
+                                <div class="col-md-8">
+                                    <input type="hidden" name="Make" value="@Model.MakeName" />
+                                    <input type="hidden" name="Model" value="@car.Name" />
+                                    <input type="hidden" name="ImageUrl" value="@car.ImageUrl" />
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="submit" class="btn btn-danger form-control" value="Change Picture" />
+                                </div>
+                            </form>
+                        }
+                    }
+                    else
+                    {
+                        <a asp-area="" asp-controller="Account" asp-action="Login" class="btn btn-primary form-control" role="button">Login for more options</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}

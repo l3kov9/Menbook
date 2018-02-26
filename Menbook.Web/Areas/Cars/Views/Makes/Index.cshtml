@@ -1,0 +1,55 @@
+﻿@model CarMakeListingViewModel
+@{
+    ViewData["Title"] = "Makes";
+}
+<br />
+
+<nav aria-label="Page navigation example" class="text-center">
+    <ul class="pagination">
+        <li class="page-item"><a asp-route-page="@Model.PreviousPage" class="page-link">Previous</a></li>
+
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            var activePage = Model.CurrentPage == i ? "active" : string.Empty;
+            <li class="page-item @activePage"><a asp-route-page="@i" class="page-link"> @i </a></li>
+        }
+        <li class="page-item"><a asp-route-page="@Model.NextPage" class="page-link">Next</a></li>
+    </ul>
+</nav>
+@foreach (var car in Model.Cars)
+{
+    <div class="col-md-6">
+        <div class="panel panel-default panel-front">
+            <div class="panel-heading">
+                <h4 class="panel-title"><a asp-action="Models" asp-route-id="@car.Id"><img style='width: 100%;' src="@car.ImageUrl" height="250"></a></h4>
+            </div>
+            <div class="panel-body">
+                <h2 class="text-center">@car.Name</h2>
+                <h5>Rating  - @car.Rating</h5>
+                <h5>Description - @car.Description</h5>
+                <div class="text-right">
+                    <a asp-action="Models" asp-route-id="@car.Id" class="btn btn-primary form-control" role="button">View All Models</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<br />
+<div class="row col-md-12">
+    <nav aria-label="Page navigation example" class="text-center">
+        <ul class="pagination">
+            <li class="page-item"><a asp-route-page="@Model.PreviousPage" class="page-link">Previous</a></li>
+
+            @for (int i = 1; i <= Model.TotalPages; i++)
+            {
+                var activePage = Model.CurrentPage == i ? "active" : string.Empty;
+                <li class="page-item @activePage"><a asp-route-page="@i" class="page-link"> @i </a></li>
+            }
+            <li class="page-item"><a asp-route-page="@Model.NextPage" class="page-link">Next</a></li>
+        </ul>
+    </nav>
+</div>
+
+
+

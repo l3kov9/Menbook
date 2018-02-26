@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
+        <li data-target="#myCarousel" data-slide-to="5"></li>
+        <li data-target="#myCarousel" data-slide-to="6"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" style="opacity:0.6">
+        <div class="item active">
+            <img src="http://www.sleekcover.com/covers/the-car-facebook-cover.jpg" alt="Los Angeles" width="2000">
+        </div>
+
+        <div class="item">
+            <img src="https://newevolutiondesigns.com/images/freebies/car-facebook-cover-1.jpg" alt="Chicago" width="2000">
+        </div>
+
+        <div class="item">
+            <img src="http://www.hdfbcover.com/randomcovers/covers/BMW-M5-fb-cover.jpg" alt="New York" width="2000">
+        </div>
+        <div class="item">
+            <img src="https://coverfiles.alphacoders.com/493/49302.jpg" alt="New York" width="2000">
+        </div>
+        <div class="item">
+            <img src="http://www.likecovers.com/covers/original/yellow-muscle-car-facebook-covers.jpg?i" alt="New York" width="2000">
+        </div>
+        <div class="item">
+            <img src="http://topcoverphoto.com/app/template/3785.jpg" alt="New York" width="2000">
+        </div>
+        <div class="item">
+            <img src="http://www.profilerehab.com/facebook_covers/cars/mustang_car_cover_13.jpg" alt="New York" width="2000">
+        </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+<br />
+<a asp-controller="Makes" class="btn btn-primary form-control">All Makes</a>

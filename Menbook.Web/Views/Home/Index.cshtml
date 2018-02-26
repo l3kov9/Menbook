@@ -1,0 +1,98 @@
+﻿@model string[]
+
+@{
+    Layout = "";
+}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Menbook</title>
+
+
+    <link href="~/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/css/coming-soon.min.css" rel="stylesheet" />
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div style="position: absolute; z-index: -1; top: 0px; left: 0px; bottom: 0px; right: 0px; overflow: hidden; background-size: cover; background-color: transparent; background-repeat: no-repeat; background-position: 50% 50%; background-image: none;"><video autoplay="" loop="" muted="" style="margin: auto; position: absolute; z-index: -1; top: 50%; left: 50%; transform: translate(-50%, -50%); visibility: visible; opacity: 1; width: 100%; height: auto;"><source src="~/mp4/bg.mp4" type="video/mp4"></video></div>
+
+    <div class="overlay"></div>
+
+    <div class="masthead">
+        <div class="masthead-bg"></div>
+        <div class="container h-100">
+            <div class="row h-100">
+                <div class="col-12 my-auto">
+                    <div class="masthead-content text-white py-5 py-md-0">
+                        <h2 class="mb-3 text-left">Welcome to <strong>Menbook</strong>!</h2>
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <p class="mb-5">
+                                Happy to see you again, @User.Identity.Name!
+                                <br />
+                                Enjoy your stay!
+                            </p>
+
+                            <p class="text-center">
+                                <a asp-area="Home" class="btn btn-success">Go, Go, Go !!!</a><br /><br />
+                            </p>
+                        }
+                        else
+                        {
+                            <p class="mb-5 text-right">
+                                Join our site for free <strong>Now</strong>!
+                            </p>
+                            <p class="text-center">
+                                <a asp-controller="Account" asp-action="Login" class="btn btn-primary">Login</a>
+                                <a asp-controller="Account" asp-action="Register" class="btn btn-primary">Register</a>
+                                <a asp-area="Home" class="btn btn-success">Be my guest</a><br /><br />
+                            </p>
+
+                            @: <span class="text-right"><em>P.S. bg-mama.com and vegans not allowed.</em></span>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="social-icons">
+        <ul class="list-unstyled text-center mb-0">
+            <li class="list-unstyled-item">
+                <a href="#">
+                    <i class="fa fa-twitter">
+                    </i>
+                </a>
+            </li>
+            <li class="list-unstyled-item">
+                <a href="#">
+                    <i class="fa fa-twitter">
+                    </i>
+                </a>
+            </li>
+            <li class="list-unstyled-item">
+                <a href="#">
+                    <i class="fa fa-instagram"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="social-icons text-right">
+        <ul>
+            <li> <h3 style="color:greenyellow; padding-left:50%;padding-right:10%">@Model[0]</h3></li>
+            <li><h5 style="padding-right:10%"><em>@Model[1]</em></h5></li>
+        </ul>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/jquery.vide.min.js"></script>
+    <script src="~/js/coming-soon.min.js"></script>
+</body>
+</html>
