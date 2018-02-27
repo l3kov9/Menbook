@@ -5,8 +5,8 @@ Register and enjoy our car park, post some articles in the blog,
 rate and enjoy our beer fest.
 Enjoy!
 
-![Home page](https://ibb.co/k6ZGSc)
+![Home page](https://image.ibb.co/hHp5Lx/menbook_start.png)
 
-![Main menu](https://ibb.co/b8XLnc)
+![Main menu](https://image.ibb.co/fkaHYH/main_menu.png)
 
-![Car menu]https://ibb.co/jkUSYH)
+![Car menu](https://image.ibb.co/eFRkLx/car_menu.png)
