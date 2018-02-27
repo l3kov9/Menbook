@@ -1,6 +1,5 @@
 ﻿namespace Menbook.Web.Areas.Cars.Controllers
 {
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Models;
     using Services;
@@ -29,35 +28,6 @@
                 CurrentPage = page,
                 TotalPages = totalPages
             });
-        }
-
-        public async Task<IActionResult> Models(int id)
-            => View(new CarModelListingViewModel
-            {
-                Models = await this.cars.ModelsByMake(id),
-                MakeName = await this.cars.NameById(id)
-            });
-
-        [Authorize]
-        [HttpPost]
-        public async Task<IActionResult> AddImg(AddImgToModelForm carModel)
-        {
-            await this.cars.ChangeModelImgAsync(carModel.Make, carModel.Model, carModel.ImageUrl);
-
-            var id = await this.cars.GetMakeIdByNameAsync(carModel.Make);
-
-            return RedirectToAction(nameof(Models),new { id });
-        }
-
-        [Authorize]
-        [HttpPost]
-        public async Task<IActionResult> DeleteImg(AddImgToModelForm carModel)
-        {
-            await this.cars.DeleteImageAsync(carModel.Make, carModel.Model);
-
-            var id = await this.cars.GetMakeIdByNameAsync(carModel.Make);
-
-            return RedirectToAction(nameof(Models), new { id });
         }
     }
 }

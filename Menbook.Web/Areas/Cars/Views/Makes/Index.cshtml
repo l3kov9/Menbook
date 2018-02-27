@@ -21,14 +21,14 @@
     <div class="col-md-6">
         <div class="panel panel-default panel-front">
             <div class="panel-heading">
-                <h4 class="panel-title"><a asp-action="Models" asp-route-id="@car.Id"><img style='width: 100%;' src="@car.ImageUrl" height="250"></a></h4>
+                <h4 class="panel-title"><a asp-controller="Models" asp-action="Index" asp-route-id="@car.Id"><img style='width: 100%;' src="@car.ImageUrl" height="250"></a></h4>
             </div>
             <div class="panel-body">
                 <h2 class="text-center">@car.Name</h2>
                 <h5>Rating  - @car.Rating</h5>
                 <h5>Description - @car.Description</h5>
                 <div class="text-right">
-                    <a asp-action="Models" asp-route-id="@car.Id" class="btn btn-primary form-control" role="button">View All Models</a>
+                    <a asp-controller="Models" asp-action="Index" asp-route-id="@car.Id" class="btn btn-primary form-control" role="button">View All Models</a>
                 </div>
             </div>
         </div>

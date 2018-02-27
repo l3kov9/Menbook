@@ -38,6 +38,18 @@
                 .AddEntityFrameworkStores<MenbookDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.AddAuthentication().AddFacebook(fo =>
+            {
+                fo.AppId = "154377808515619";
+                fo.AppSecret = "2a335da0b1ff3ee4a7be6b7e3d74f5d5";
+            });
+
+            services.AddAuthentication().AddGoogle(go =>
+            {
+                go.ClientId = "715870821307-798hup62nbl03b6k55tviqd8qrlkptt7.apps.googleusercontent.com";
+                go.ClientSecret = "yGQb14gI5bAZCPcPgdCASfUF";
+            });
+
             services.AddAutoMapper();
 
             services.AddDomainServices();

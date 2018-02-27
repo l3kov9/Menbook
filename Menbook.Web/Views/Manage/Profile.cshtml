@@ -1,0 +1,67 @@
+﻿@model ProfileViewModel
+@{
+    ViewData["Title"] = "Profile";
+}
+@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+@{
+    var imageUrl = Model.ImageUrl == null ? "http://philosophy.ucr.edu/wp-content/uploads/2014/10/no-profile-img-240x300.gif" : Model.ImageUrl;
+}
+<br /><br />
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="well well-sm" style="background-color:lightgray">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <img src="@imageUrl" alt="My Photo" class="img-rounded img-responsive" />
+                    </div>
+                    <div class="col-sm-6 col-md-8">
+                        <h2>
+                            @Model.Name
+                        </h2>
+                        <br /><br />
+                        <p>
+                            Name: @Model.Name<br /><br />
+                            Username: @Model.Username<br /><br />
+                            <i class="glyphicon glyphicon-envelope"></i>@Model.Email
+                            <br />
+                            <br />
+                            <i class="glyphicon glyphicon-gift"></i>@(Model.Birthdate.ToShortDateString() ?? "No birthdate")
+                            <br /><br />
+                            Phone: @Model.PhoneNumber
+                        </p>
+                        <a asp-action="Index" class="btn btn-warning text-right">Edit Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3>My Cars</h3>
+
+@foreach (var car in Model.Cars)
+{
+    <div class="col-md-6">
+        <div class="panel panel-default panel-front">
+            <h2 class="text-center text-success">@car.Make <em>@car.Model</em></h2>
+
+            <div class="panel-heading">
+                <a><img style='width: 100%;' src="@car.ImageUrl" height="250" alt="@car.Make @car.Model"></a>
+            </div>
+
+            <div class="panel-body">
+                <div class="text-right">
+                    <a class="btn btn-success form-control">Reviews</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -8,7 +8,6 @@
 
     public class User : IdentityUser
     {
-        [Required]
         [MaxLength(DataConstrants.UserNameMaxLength)]
         public string Name { get; set; }
 

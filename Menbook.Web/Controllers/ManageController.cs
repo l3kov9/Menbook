@@ -52,6 +52,9 @@
             var model = new IndexViewModel
             {
                 Username = user.UserName,
+                Name = user.Name,
+                Birthdate = user.Birthdate == default(DateTime) ? DateTime.Now : user.Birthdate,
+                ImageUrl = user.ImageUrl,
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
                 IsEmailConfirmed = user.EmailConfirmed,
@@ -96,9 +99,63 @@
                 }
             }
 
+            var nameIsChanged = model.Name != user.Name;
+            var imgIsChanged = model.ImageUrl != user.ImageUrl;
+            var birthdateIsChanged = model.Birthdate != user.Birthdate;
+
+            if (nameIsChanged)
+            {
+                user.Name = model.Name;
+            }
+
+            if (imgIsChanged)
+            {
+                user.ImageUrl = model.ImageUrl;
+            }
+
+            if (birthdateIsChanged)
+            {
+                user.Birthdate = model.Birthdate;
+            }
+
+            if (nameIsChanged || imgIsChanged || birthdateIsChanged)
+            {
+                await this._userManager.UpdateAsync(user);
+            }
+
             StatusMessage = "Your profile has been updated";
             return RedirectToAction(nameof(Index));
         }
+
+
+        public async Task<IActionResult> Profile()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+            }
+
+            var carModel = new ProfileViewModel
+            {
+                Username = user.UserName,
+                Name = user.Name,
+                Birthdate = user.Birthdate == default(DateTime) ? DateTime.Now : user.Birthdate,
+                ImageUrl = user.ImageUrl,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                Cars = user.Cars.Select(c => new CarModelListingFavouriteViewModel
+                        {
+                            Make = c.Model.Make.Name,
+                            Model = c.Model.Name,
+                            ImageUrl = c.Model.ImageUrl ?? "http://forevervacationrentals.com/images/no-image-available2.jpg"
+                        })
+                        .ToList()
+            };
+
+            return View(carModel);
+        }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
