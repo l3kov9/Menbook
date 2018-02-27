@@ -2,28 +2,26 @@
 @{
     Layout = "";
 }
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Menbook</title>
 
-    <title>Menbook</title>
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <link href="~/css/font-awesome.min.css" rel="stylesheet" />
     <link href="~/css/coming-soon.min.css" rel="stylesheet" />
-    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     <link href="~/css/bootstrap.min.css" rel="stylesheet" />
-
 </head>
-<body>
+<body style="padding-top: 0px;padding-bottom: 0px;">
     <div style="position: absolute; z-index: -1; top: 0px; left: 0px; bottom: 0px; right: 0px; overflow: hidden; background-size: cover; background-color: transparent; background-repeat: no-repeat; background-position: 50% 50%; background-image: none;"><video autoplay="" loop="" muted="" style="margin: auto; position: absolute; z-index: -1; top: 50%; left: 50%; transform: translate(-50%, -50%); visibility: visible; opacity: 1; width: 100%; height: auto;"><source src="~/mp4/bg.mp4" type="video/mp4"></video></div>
 
     <div class="overlay"></div>
-
     <div class="masthead">
         <div class="masthead-bg"></div>
         <div class="container h-100">
@@ -32,7 +30,7 @@
                     <div class="masthead-content text-white py-5 py-md-0">
                         <div class="text-center"><img src="~/images/logos/men-book-beers.png" /></div>
                         <h2 class="mb-3 text-center text-uppercase text-warning">Welcome to <strong>Menbook</strong>!</h2>
-
+                        <br /><br /><br />
                         @if (User.Identity.IsAuthenticated)
                         {
                             <p class="mb-5">
@@ -40,16 +38,14 @@
                                 <br />
                                 Enjoy your stay!
                             </p>
+                            <p class="text-center">
+                                <a style="font-size:14px" asp-area="Home" class="btn btn-success form-control">Main Menu</a>
+                                <a style="font-size:14px" asp-area="" asp-controller="Manage" asp-action="Profile" class="btn btn-primary form-control">My Profile</a>
+                                <a style="font-size:14px" asp-controller="Manage" asp-action="Index" class="btn btn-warning form-control">Edit Profile</a>
 
-                            <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
-                                <ul class="nav navbar-nav navbar-right">
-                                    <li>
-                                        <a asp-area="Home" class="btn btn-success col-md-4">Main Menu</a>
-                                        <a asp-area="" asp-controller="Manage" asp-action="Profile" class="btn btn-primary col-md-4">My Profile</a>
-                                        <button type="submit" class="btn btn-danger navbar-btn navbar-link col-md-3">Logout</button>
-
-                                    </li>
-                                </ul>
+                            </p>
+                            <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+                                <button style="font-size:14px" type="submit" class="btn btn-danger navbar-btn navbar-link form-control">Logout</button>
                             </form>
                         }
                         else
@@ -58,21 +54,21 @@
                                 Join our site for free <strong>Now</strong>!
                             </p>
                             <p class="text-center">
-                                <a asp-controller="Account" asp-action="Login" class="btn btn-success col-md-4">Login</a>
-                                <a asp-controller="Account" asp-action="Register" class="btn btn-success col-md-4">Register</a>
-                                <a asp-area="Home" asp-controller="Home" asp-action="Index" class="btn btn-info col-md-3">Guest</a><br /><br />
+                                <a style="font-size:14px" asp-controller="Account" asp-action="Login" class="btn btn-primary form-control">Login</a>
+                                <a style="font-size:14px" asp-controller="Account" asp-action="Register" class="btn btn-success form-control">Register</a>
+                                <a style="font-size:14px" asp-area="Home" asp-controller="Home" asp-action="Index" class="btn btn-info form-control">Guest</a><br /><br />
                             </p>
 
                             <p class="text-center">
-                                <a asp-controller="Account" asp-action="Login" class="btn btn-primary btn-social btn-facebook">
-                                    <span class="fa fa-facebook-square"></span> Sign in with Facebook
+                                <a style="font-size:14px" asp-controller="Account" asp-action="Login" class="btn btn-primary form-control">
+                                    <span class="fa fa-facebook"></span> Sign in Facebook
                                 </a>
-                                <a asp-controller="Account" asp-action="Login" class="btn btn-danger btn-social btn-google">
-                                    <span class="fa fa-google"></span> Sign in with Google
+                                <a style="font-size:14px" asp-controller="Account" asp-action="Login" class="btn btn-danger form-control">
+                                    <span class="fa fa-google"></span> Sign in Google
                                 </a>
                             </p>
-                            <br />
-                            @: <span class="text-right"><em>P.S. bg-mama.com and vegans not allowed.</em></span>
+                            <br /><br /><br />
+                            @: <span class="text-right" style="font-size:16px"><em>P.S. bg-mama.com and vegans not allowed.</em></span>
                         }
                     </div>
                 </div>
@@ -82,32 +78,81 @@
     <div class="social-icons">
         <ul class="list-unstyled text-center mb-0">
             <li class="list-unstyled-item">
-                <a asp-controller="Account" asp-action="Login" style="padding:15px">
-                    <i class="fa fa-facebook-square" style="font-size:36px"></i>
+                <a style="font-size:35px; color:greenyellow">
+                    M
                 </a>
             </li>
             <li class="list-unstyled-item">
-                <a asp-controller="Account" asp-action="Login" style="padding:15px">
-                    <i class="fa fa-google" style="font-size:36px"></i>
+                <a style="font-size:35px; color:greenyellow">
+                    E
                 </a>
             </li>
             <li class="list-unstyled-item">
-                <a asp-controller="Account" asp-action="Login" style="padding:15px">
-                    <i class="fa fa-twitter" style="font-size:36px"></i>
+                <a style="font-size:35px; color:greenyellow">
+                    N
+                </a>
+            </li>
+            <li class="list-unstyled-item">
+                <a style="font-size:35px; color:greenyellow">
+                    B
+                </a>
+            </li>
+            <li class="list-unstyled-item">
+                <a style="font-size:35px; color:greenyellow">
+                    O
+                </a>
+            </li>
+            <li class="list-unstyled-item">
+                <a style="font-size:35px; color:greenyellow">
+                    O
+                </a>
+            </li>
+            <li class="list-unstyled-item">
+                <a style="font-size:35px; color:greenyellow">
+                    K
                 </a>
             </li>
         </ul>
     </div>
     <div class="social-icons text-right">
         <ul>
-            <li> <h3 style="color:greenyellow; padding-left:50%;padding-right:10%">@Model[0]</h3></li>
-            <li><h5 style="padding-right:10%"><em>@Model[1]</em></h5></li>
+            <li><h1 style="color:greenyellow; padding-left:40%;padding-right:15%" class="text-right">@Model[0]</h1></li>
+            <li><h3 style="padding-right:25%" class="text-right"><em>@Model[1]</em></h3></li>
         </ul>
     </div>
 
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/jquery.vide.min.js"></script>
     <script src="~/js/coming-soon.min.js"></script>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
 </body>
 </html>
+
+
+
+
+
+
+
