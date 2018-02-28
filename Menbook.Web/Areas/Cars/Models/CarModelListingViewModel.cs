@@ -8,5 +8,11 @@
         public IEnumerable<CarModelListingServiceModel> Models { get; set; }
 
         public string MakeName { get; set; }
+
+        public IEnumerable<int> UserCarFavouriteIds { get; set; }
+
+        public IDictionary<int, int> UserRateIds { get; set; }
+
+        public IDictionary<int, double> AverageRating { get; set; }
     }
 }

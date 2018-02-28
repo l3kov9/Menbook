@@ -16,6 +16,8 @@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </environment>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body style="background-color: cornflowerblue">
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -29,6 +31,7 @@
                 </button>
                 <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Menbook<span class="glyphicon glyphicon-home"></span></a>
             </div>
+
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>
@@ -42,13 +45,26 @@
                         </form>
                     </li>
                     <li><a asp-area="Home" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-area="Cars" asp-controller="Home" asp-action="Index">Car Park</a></li>
+                    @*@if (User.IsInRole("Administrator"))
+                        {
+                            <li><a asp-area="" asp-controller="Admin" asp-action="Index">Admin</a></li>
+                        }*@
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
         </div>
     </nav>
     <div class="container body-content">
-
+        @if (TempData.ContainsKey("SuccessMessage"))
+        {
+            <br />
+            <div class="col-md-12">
+                <div class="alert alert-success col-md-6 col-md-offset-3 text-center">
+                    @TempData["SuccessMessage"]
+                </div>
+            </div>
+        }
         @RenderBody()
         <hr />
         <footer>

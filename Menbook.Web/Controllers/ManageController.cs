@@ -1,6 +1,7 @@
 ﻿namespace Menbook.Web.Controllers
 {
     using Data.Models;
+    using Menbook.Services;
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
@@ -21,6 +22,8 @@
         private readonly SignInManager<User> _signInManager;
         private readonly ILogger _logger;
         private readonly UrlEncoder _urlEncoder;
+        private readonly IUserService users;
+        private readonly ICarService cars;
 
         private const string AuthenticatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6";
         private const string RecoveryCodesKey = nameof(RecoveryCodesKey);
@@ -29,12 +32,16 @@
           UserManager<User> userManager,
           SignInManager<User> signInManager,
           ILogger<ManageController> logger,
-          UrlEncoder urlEncoder)
+          UrlEncoder urlEncoder,
+          IUserService users,
+          ICarService cars)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _urlEncoder = urlEncoder;
+            this.users = users;
+            this.cars = cars;
         }
 
         [TempData]
@@ -136,7 +143,11 @@
                 throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
-            var carModel = new ProfileViewModel
+            var carIds = await this.users.FavouriteCarIdsByUserIdAsync(user.Id);
+
+            var cars = await this.cars.GetCarInfoByIds(carIds);
+
+            var profile = new ProfileViewModel
             {
                 Username = user.UserName,
                 Name = user.Name,
@@ -144,16 +155,10 @@
                 ImageUrl = user.ImageUrl,
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
-                Cars = user.Cars.Select(c => new CarModelListingFavouriteViewModel
-                        {
-                            Make = c.Model.Make.Name,
-                            Model = c.Model.Name,
-                            ImageUrl = c.Model.ImageUrl ?? "http://forevervacationrentals.com/images/no-image-available2.jpg"
-                        })
-                        .ToList()
+                Cars = cars
             };
 
-            return View(carModel);
+            return View(profile);
         }
 
 

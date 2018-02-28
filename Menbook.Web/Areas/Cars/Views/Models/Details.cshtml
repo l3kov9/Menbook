@@ -1,0 +1,74 @@
+﻿@model CarDetailsViewModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<br /><br />
+@{ 
+    var carImageUrl = Model.Car.ImageUrl == null ? "http://forevervacationrentals.com/images/no-image-available2.jpg" : Model.Car.ImageUrl;
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="well well-sm" style="background-color:lightgray">
+            <div class="row">
+                <div class="col-sm-6 col-md-5" style="margin:20px">
+                    <img src="@carImageUrl" alt="@Model.Car.Make @Model.Car.Model" class="img-circle img-responsive" />
+                </div>
+                <br /><br /><br />
+                <div class="col-sm-6 col-md-5 col-md-offset-1">
+                    <h1 class="text-center">
+                        @Model.Car.Make @Model.Car.Model
+                    </h1>
+                    <br /><br />
+                    <p>
+                        <div class="col-md-12 text-center">
+                            <strong>Make</strong>: @Model.Car.Make<br /><br />
+                            <strong>Model</strong>: @Model.Car.Model<br /><br />
+                        </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br /><br />
+@if (Model.UserReviewIds.Contains(Model.CurrentUserId))
+{
+    <h4 class="text-center text-warning">You have already posted review for this car. You can't post anymore...</h4>
+}
+else
+{
+    <h3 class="text-center text-danger">Post Review</h3>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <form method="post" asp-action="PostReview">
+                <textarea rows="5" name="Text" placeholder="Post your review here ..." class="form-control"></textarea>
+                <input type="hidden" name="ModelId" value="@Model.Car.ModelId" />
+                <div class="text-right">
+                    <input type="submit" class="btn btn-primary text-right" value="Post Review" />
+                </div>
+            </form>
+        </div>
+    </div>
+}
+
+<br /><br />
+@foreach (var review in Model.Car.Reviews)
+{
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="list-group">
+                <a class="list-group-item active text-left">
+                    <h3 class="list-group-item-text">"@review.Text"</h3>
+                    <br /><br />
+                    <div class="text-right">
+                        <em class="list-group-item-heading">published by @review.User on @review.PublishedDate.ToShortDateString()</em>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <br /><br /><br /><br />
+}

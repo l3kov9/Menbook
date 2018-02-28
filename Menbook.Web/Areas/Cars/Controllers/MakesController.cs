@@ -19,7 +19,8 @@
 
         public async Task<IActionResult> Index(int page = 1)
         {
-            var cars = await this.cars.AllAsync(page, PageSize);
+            string search = string.Empty;
+            var cars = await this.cars.AllBySearchAsync(page, PageSize, search);
             var totalPages = (int)Math.Ceiling((double)await this.cars.Total() / PageSize);
 
             return View(new CarMakeListingViewModel
@@ -27,6 +28,22 @@
                 Cars = cars,
                 CurrentPage = page,
                 TotalPages = totalPages
+            });
+        }
+
+        public async Task<IActionResult> Search(string Search, int page = 1)
+        {
+            Search = Search ?? string.Empty;
+            var cars = await this.cars.AllBySearchAsync(page, PageSize, Search);
+            var totalPages = (int)Math.Ceiling((double) await this.cars.TotalBySearchAsync(Search) / PageSize);
+
+            return View(new SearchCarMakeListingViewModel
+            {
+                Cars = cars,
+                CurrentPage = page,
+                TotalPages = totalPages,
+                Search = Search,
+                TotalFound = await this.cars.TotalBySearchAsync(Search)
             });
         }
     }

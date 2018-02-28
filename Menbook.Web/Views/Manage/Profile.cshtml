@@ -15,7 +15,7 @@
 }
 <br /><br />
 <div class="row">
-    <div class="col-md-offset-1 col-md-10">
+    <div class="col-md-12">
         <div class="well well-sm" style="background-color:deepskyblue">
             <div class="row">
                 <div class="col-sm-6 col-md-4" style="margin:20px">
@@ -51,16 +51,26 @@
     </div>
 </div>
 
-<h3>My Cars</h3>
+@if (Model.Cars.Any())
+{
+    <h2 class="text-success text-center">My Cars</h2><br />
+}
 
 @foreach (var car in Model.Cars)
 {
+    var carImageUrl = car.ImageUrl == null ? "http://forevervacationrentals.com/images/no-image-available2.jpg" : car.ImageUrl;
+
     <div class="col-md-6">
         <div class="panel panel-default panel-front">
-            <h2 class="text-center text-success">@car.Make <em>@car.Model</em></h2>
-
+            <h2 class="text-center text-success">
+                @car.Make <em>@car.Model</em>
+                <form asp-area="Cars" asp-controller="Models" asp-action="RemoveMyCar" method="post">
+                    <input type="hidden" name="ModelId" value="@car.ModelId" />
+                    <button type="submit" class="btn btn-link col-md-4 col-md-offset-4"><img src="https://cdn2.iconfinder.com/data/icons/flat-style-svg-icons-part-1/512/cancel_delete_remove_stop-128.png" width="50" /></button>
+                </form>
+            </h2>
             <div class="panel-heading">
-                <a><img style='width: 100%;' src="@car.ImageUrl" height="250" alt="@car.Make @car.Model"></a>
+                <a><img style='width: 100%;' src="@carImageUrl" height="250" alt="@car.Make @car.Model"></a>
             </div>
 
             <div class="panel-body">

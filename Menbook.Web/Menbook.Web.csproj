@@ -27,8 +27,4 @@
     <ProjectReference Include="..\Menbook.Services\Menbook.Services.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Areas\Home\Models\" />
-  </ItemGroup>
-
 </Project>

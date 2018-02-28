@@ -2,35 +2,69 @@
 @{
     ViewData["Title"] = $"{Model.MakeName}";
 }
-<br /><br />
+<br />
+<div class="">
+    <a asp-controller="Makes" asp-action="Index" class="btn btn-primary">Back to Makes</a>
+</div>
+<br />
 @foreach (var car in Model.Models)
 {
     var carImageUrl = car.ImageUrl == null ? "http://forevervacationrentals.com/images/no-image-available2.jpg" : car.ImageUrl;
-
+    var averageRate = $"Average Rating - {Model.AverageRating[car.Id]:F1}";
     <div class="col-md-6">
-        <div class="panel panel-default panel-front">
+        <div class="panel panel-default panel-front" style="height:600px;">
             <h2 class="text-center text-success">@Model.MakeName <em>@car.Name</em></h2>
+            <h5 class="text-center text-info">@(Model.AverageRating[car.Id] > 0 ? @averageRate : "Be the first to rate this car") <img src="http://img.first-jump.com/icons/file/oxygen/128/actions/bookmark.png" width="20" /></h5>
             @if (User.Identity.IsAuthenticated)
             {
                 <div class="row text-center">
-                    @for (int i = 1; i <= 5; i++)
-                    {
-                        <a class="btn btn-success">@i<img src="http://img.first-jump.com/icons/file/oxygen/128/actions/bookmark.png" width="30" /></a>
-                    }
-                    <br /><br />
-                    <a class="btn btn-info col-md-4 col-md-offset-4">Add to my cars   <img src="http://icons.iconarchive.com/icons/designbolts/free-valentine-heart/256/Heart-Shadow-icon.png" width="20" /></a>
-                    <br /><br />
+                    <div class="row">
+                        @if (Model.UserRateIds.Keys.Contains(car.Id))
+                        {
+                            <div class="col-md-8 col-md-offset-2">
+                                <div class="btn btn-success">You have already rated this car with @Model.UserRateIds[car.Id] <img src="http://img.first-jump.com/icons/file/oxygen/128/actions/bookmark.png" width="30" />!</div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-md-9 col-md-offset-2">
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    <form asp-action="RateCar" method="post" class="col-md-2">
+                                        <input type="hidden" name="ModelId" value="@car.Id" />
+                                        <input type="hidden" name="Rating" value="@i" />
+                                        <input type="hidden" name="Make" value="@Model.MakeName" />
+                                        <button type="submit" class="btn btn-danger">@i<img src="http://img.first-jump.com/icons/file/oxygen/128/actions/bookmark.png" width="30" /></button>
+                                    </form>
+                                }
+                            </div><br />
+                        }
+                    </div><br />
                 </div>
             }
 
-            <div class="panel-heading">
-                <a><img style='width: 100%;' src="@carImageUrl" height="250" alt="@Model.MakeName @car.Name"></a>
+            <div class="panel-heading" style="height:260px">
+                <a asp-action="Details" asp-route-id="@car.Id"><img style='width: 100%;' src="@carImageUrl" height="250" alt="@Model.MakeName @car.Name"></a>
             </div>
 
             @if (User.Identity.IsAuthenticated)
             {
                 <div class="panel-body">
                     <div class="text-right">
+                        @if (Model.UserCarFavouriteIds.Contains(car.Id))
+                        {
+                            <div class="text-center">
+                                <div class="btn btn-default text-center">You already own this car <img src="http://icons.iconarchive.com/icons/designbolts/free-valentine-heart/256/Heart-Shadow-icon.png" width="20" /></div>
+                            </div><br />
+                        }
+                        else
+                        {
+                            <form asp-action="AddToMyCar" method="post">
+                                <input type="hidden" name="Id" value="@car.Id" />
+                                <input type="hidden" name="Make" value="@Model.MakeName" />
+                                <button type="submit" class="btn btn-info col-md-4 col-md-offset-4">Add to my cars <img src="http://icons.iconarchive.com/icons/designbolts/free-valentine-heart/256/Heart-Shadow-icon.png" width="20" /></button>
+                            </form><br /><br /><br />
+                        }
 
                         @if (car.ImageUrl == null)
                         {
@@ -58,19 +92,26 @@
                                 </div>
                             </form>
                         }
-                        <br /><br />
-                        <a class="btn btn-success form-control">Reviews</a>
+                        <br /><br /><br />
+                        <a asp-action="Details" asp-route-id="@car.Id" class="btn btn-success form-control">Details</a>
                     </div>
                 </div>
             }
             else
             {
+                <br /><br /><br /><br />
                 <div class="panel-body">
                     <div class="text-right">
                         <a asp-area="" asp-controller="Account" asp-action="Login" asp-route-returnurl="@Html.ViewContext.HttpContext.Request.Path" class="btn btn-primary form-control">Login for more</a>
+                        <br /><br />
+                        <a asp-area="" asp-controller="Account" asp-action="Register" asp-route-returnurl="@Html.ViewContext.HttpContext.Request.Path" class="btn btn-success form-control">Register for more</a>
                     </div>
                 </div>
             }
         </div>
     </div>
 }
+<br />
+<p>
+    <a asp-controller="Makes" asp-action="Index" class="btn btn-primary">Back to Makes</a>
+</p>

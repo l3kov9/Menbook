@@ -1,5 +1,6 @@
 ﻿namespace Menbook.Web.Models.ManageViewModels
 {
+    using Services.Models;
     using System;
     using System.Collections.Generic;
 
@@ -17,6 +18,6 @@
 
         public string PhoneNumber { get; set; }
 
-        public List<CarModelListingFavouriteViewModel> Cars { get; set; } = new List<CarModelListingFavouriteViewModel>();
+        public IEnumerable<CarModelFavouritesListingServiceModel> Cars { get; set; } = new List<CarModelFavouritesListingServiceModel>();
     }
 }

@@ -11,8 +11,6 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Services;
-    using Services.Implementations;
 
     public class Startup
     {
