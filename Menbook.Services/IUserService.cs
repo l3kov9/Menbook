@@ -8,5 +8,7 @@
         Task<IEnumerable<int>> FavouriteCarIdsByUserIdAsync(string id);
 
         Task<IDictionary<int, int>> AllRatesIdsAsync(string id);
+
+        Task<string> CurrentUserNameByIdAsync(string id);
     }
 }

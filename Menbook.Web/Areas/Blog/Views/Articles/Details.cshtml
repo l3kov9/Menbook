@@ -1,0 +1,27 @@
+﻿@model ArticleDetailsServiceModel
+@{
+    ViewData["Title"] = $"{Model.Title}";
+}
+
+@{
+    var authorImage = Model.AuthorImage == null ? "http://philosophy.ucr.edu/wp-content/uploads/2014/10/no-profile-img-240x300.gif" : Model.AuthorImage;
+}
+<br />
+<div class="card" style="background-color:lightblue;">
+    <div class="col-md-12">
+        <div class="col-md-8 col-md-offset-2">
+            <br /><br />
+            <div class="text-center">
+                <img class="card-img-top img-circle text-center" src="@authorImage" alt="@Model.Author" height="200" width="200">
+            </div>
+            <br />
+            <div class="card-block">
+                <h2 class="card-title text-center text-danger"><strong>@Model.Title</strong></h2><br /><br />
+                <p class="card-text">@Html.Raw(@Model.Content)</p>
+                <br />
+                <div class="text-right"><em>Author: @Model.Author<br />published on @Model.PublishDate.ToShortDateString()</em></div>
+            </div>
+        </div>
+    </div>
+</div>
+

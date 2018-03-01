@@ -1,5 +1,6 @@
 ﻿namespace Menbook.Data.Models
 {
+    using Blog;
     using Cars;
     using Microsoft.AspNetCore.Identity;
     using System;
@@ -22,5 +23,7 @@
         public List<Rating> CarRatings { get; set; } = new List<Rating>();
 
         public List<Review> CarReviews { get; set; } = new List<Review>();
+
+        public List<Article> Articles { get; set; } = new List<Article>();
     }
 }

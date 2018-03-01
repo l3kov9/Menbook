@@ -22,6 +22,13 @@
                 .Select(r => new { r.ModelId, r.Rate })
                 .ToDictionary(r => r.ModelId, r => r.Rate);
 
+        public async Task<string> CurrentUserNameByIdAsync(string id)
+            => await this.db
+                .Users
+                .Where(u => u.Id == id)
+                .Select(u => u.UserName)
+                .FirstOrDefaultAsync();
+
         public async Task<IEnumerable<int>> FavouriteCarIdsByUserIdAsync(string id)
             => await this.db
                 .UserCars

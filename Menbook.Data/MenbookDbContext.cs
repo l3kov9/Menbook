@@ -3,6 +3,7 @@
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
     using Models;
+    using Models.Blog;
     using Models.Cars;
 
     public class MenbookDbContext : IdentityDbContext<User>
@@ -21,6 +22,8 @@
         public DbSet<Review> Reviews { get; set; }
 
         public DbSet<UserCar> UserCars { get; set; }
+
+        public DbSet<Article> Articles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -10,5 +10,7 @@
         public const int CarMakeNameMinLength = 2;
         public const int CarMakeNameMaxLength = 50;
 
+        public const int ArticleTitleMinLength = 3;
+        public const int ArticleTitleMaxLength = 50;
     }
 }

@@ -30,13 +30,12 @@
                     <div class="masthead-content text-white py-5 py-md-0">
                         <div class="text-center"><img src="~/images/logos/men-book-beers.png" /></div>
                         <h2 class="mb-3 text-center text-uppercase text-warning">Welcome to <strong>Menbook</strong>!</h2>
-                        <br /><br /><br />
+                        <br />
                         @if (User.Identity.IsAuthenticated)
                         {
                             <p class="mb-5">
-                                Happy to see you again, @User.Identity.Name!
-                                <br />
-                                Enjoy your stay!
+                                Happy to see you, @User.Identity.Name!
+                                <div class="text-right" style="font-size:24px"><em>Enjoy your stay!</em></div>
                             </p>
                             <p class="text-center">
                                 <a style="font-size:14px" asp-area="Home" class="btn btn-success form-control">Main Menu</a>
