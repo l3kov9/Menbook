@@ -11,6 +11,6 @@ Enjoy!
 
 ![Car menu](https://image.ibb.co/eFRkLx/car_menu.png)
 
-![Beer Calculator](https://ibb.co/c8zAsn)
+![Beer Calculator](https://image.ibb.co/fMtEJS/beer_calculator.png)
 
-![Beers](https://ibb.co/cZqYCn)
+![Beers](https://image.ibb.co/eNs257/menbook_beers.png)
