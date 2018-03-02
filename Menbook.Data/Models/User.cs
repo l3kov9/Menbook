@@ -1,5 +1,6 @@
 ﻿namespace Menbook.Data.Models
 {
+    using Beers;
     using Blog;
     using Cars;
     using Microsoft.AspNetCore.Identity;
@@ -25,5 +26,9 @@
         public List<Review> CarReviews { get; set; } = new List<Review>();
 
         public List<Article> Articles { get; set; } = new List<Article>();
+
+        public List<BeerRating> BeerRatings { get; set; } = new List<BeerRating>();
+
+        public List<Beer> BeersAdded { get; set; } = new List<Beer>();
     }
 }

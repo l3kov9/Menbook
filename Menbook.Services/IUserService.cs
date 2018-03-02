@@ -9,6 +9,10 @@
 
         Task<IDictionary<int, int>> AllRatesIdsAsync(string id);
 
+        Task<IDictionary<int, int>> AllRatedBeerIdsAsync(string id);
+
         Task<string> CurrentUserNameByIdAsync(string id);
+
+        Task<int> CurrentUserAgeByIdAsync(string id);
     }
 }

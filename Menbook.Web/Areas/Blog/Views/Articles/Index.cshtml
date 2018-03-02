@@ -22,6 +22,7 @@
     var authorImage = article.AuthorImage == null ? "http://philosophy.ucr.edu/wp-content/uploads/2014/10/no-profile-img-240x300.gif" : article.AuthorImage;
 
     <div class="card" style="background-color:lightblue; height: 300px;">
+        <div class="col-md-10 col-md-offset-1">
         <div class="col-md-5 text-center">
             <br /><br />
             <img class="card-img-top img-circle" src="@authorImage" alt="@article.Author" height="200" width="200">
@@ -38,7 +39,7 @@
                     </form>
                 }
                 <div class="card-block">
-                    <h1 class="card-title text-center text-danger"><strong>@article.Title</strong></h1><br />
+                    <h1 class="card-title text-center"><strong>@article.Title</strong></h1><br />
                     <div class="text-right">
                         <br />
                         <em>
@@ -50,7 +51,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div></div>
     <br /><br />
 }
 

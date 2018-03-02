@@ -33,7 +33,10 @@
 
         public async Task<IActionResult> Search(string Search, int page = 1)
         {
-            Search = Search ?? string.Empty;
+            if(Search == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
             var cars = await this.cars.AllBySearchAsync(page, PageSize, Search);
             var totalPages = (int)Math.Ceiling((double) await this.cars.TotalBySearchAsync(Search) / PageSize);
 

@@ -46,11 +46,12 @@
                     </li>
                     <li><a asp-area="Home" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="Cars" asp-controller="Home" asp-action="Index">Cars</a></li>
+                    <li><a asp-area="Beers" asp-controller="Home" asp-action="Index">Beers</a></li>
                     <li><a asp-area="Blog" asp-controller="Articles" asp-action="Index">Blog</a></li>
-                    @*@if (User.IsInRole("Administrator"))
+                    @if (User.IsInRole("Administrator"))
         {
             <li><a asp-area="" asp-controller="Admin" asp-action="Index">Admin</a></li>
-        }*@
+        }
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>

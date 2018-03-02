@@ -1,0 +1,91 @@
+﻿@model SearchBeerListingViewModel
+@{
+    ViewData["Title"] = $@"Search for “{Model.Search}“";
+}
+
+<h2>@ViewData["Title"]: @Model.TotalFound @(Model.TotalFound == 1 ? "beer" : "beers") found.</h2>
+
+<form asp-action="Search" class="navbar-form text-right" role="search">
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search Beer ..." name="Search">
+        <div class="input-group-btn">
+            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+        </div>
+    </div>
+</form>
+
+
+<nav aria-label="Page navigation example" class="text-center">
+    <ul class="pagination">
+        <li class="page-item"><a asp-route-page="@Model.PreviousPage" class="page-link">Previous</a></li>
+
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            var activePage = Model.CurrentPage == i ? "active" : string.Empty;
+            <li class="page-item @activePage"><a asp-route-page="@i" class="page-link"> @i </a></li>
+        }
+        <li class="page-item"><a asp-route-page="@Model.NextPage" class="page-link">Next</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <div class="row">
+        @foreach (var beer in Model.Beers)
+        {
+            var beerImage = beer.ImageUrl == null ? "https://cdn1.iconfinder.com/data/icons/Drinks_by_Miniartx/256/beer_.png" : beer.ImageUrl;
+
+            <div class="col-md-4">
+                <div class="panel panel-primary panel-front">
+                    <div class="text-center">
+                        <div class="col-md-12 text-center">
+                            @if (Model.CurrentUserRatedBeerIds.ContainsKey(beer.Id))
+                            {
+                                <h5 style="height:22px">You have already rated this beer with @Model.CurrentUserRatedBeerIds[beer.Id] stars</h5>
+                            }
+                            else
+                            {
+                                <div class="col-md-12 text-center">
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        <form asp-action="RateBeer" method="post" class="col-md-2">
+                                            <input type="hidden" name="id" value="@beer.Id" />
+                                            <input type="hidden" name="rating" value="@i" />
+                                            <input type="hidden" name="currentPage" value="@Model.CurrentPage" />
+                                            <button type="submit" class="btn btn-success btn-sm">@i<img src="http://img.first-jump.com/icons/file/oxygen/128/actions/bookmark.png" width="30" /></button>
+                                        </form>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    <div class="panel-heading">
+                        <h4 class="panel-title text-center"><a HREF="#"><img src="@beerImage" height="250px" style="max-width:100%"></a></h4>
+                    </div>
+                    <div class="panel-body" style="background-color:lightblue">
+                        <h3 class="text-center" style="height:25px">
+                            @beer.Name
+                            @if (beer.AuthorId == Model.CurrentUserId)
+                            {
+                                <div class="text-right">
+                                    <a asp-action="Edit" asp-route-id="@beer.Id" asp-route-page="@Model.CurrentPage" class="btn btn-warning btn-sm">Edit</a><br />
+                                    <form method="post" action="DeleteBeer">
+                                        <input type="hidden" name="id" value="@beer.Id" />
+                                        <input type="hidden" name="currentPage" value="@Model.CurrentPage" />
+                                        <button class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                </div>
+                            }
+
+                        </h3>
+                        <strong>Type</strong>: @beer.Type beer<br />
+                        <strong>Alcohol By Volume (ABV)</strong>: @beer.AlcoholByVolume %<br />
+                        <strong>Country</strong>: @beer.Country
+                        <div class="text-right">
+                            <em>Created by @beer.Author</em>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -12,9 +12,10 @@ using System;
 namespace Menbook.Data.Migrations
 {
     [DbContext(typeof(MenbookDbContext))]
-    partial class MenbookDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180301180940_BeerTypeColumn")]
+    partial class BeerTypeColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,8 +28,6 @@ namespace Menbook.Data.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<double>("AlcoholByVolume");
-
-                    b.Property<string>("AuthorId");
 
                     b.Property<string>("Country")
                         .IsRequired()
@@ -43,8 +42,6 @@ namespace Menbook.Data.Migrations
                     b.Property<int>("Type");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
 
                     b.ToTable("Beers");
                 });
@@ -339,13 +336,6 @@ namespace Menbook.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("Menbook.Data.Models.Beers.Beer", b =>
-                {
-                    b.HasOne("Menbook.Data.Models.User", "Author")
-                        .WithMany("BeersAdded")
-                        .HasForeignKey("AuthorId");
                 });
 
             modelBuilder.Entity("Menbook.Data.Models.Beers.BeerRating", b =>

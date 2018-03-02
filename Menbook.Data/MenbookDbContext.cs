@@ -3,6 +3,7 @@
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
     using Models;
+    using Models.Beers;
     using Models.Blog;
     using Models.Cars;
 
@@ -24,6 +25,10 @@
         public DbSet<UserCar> UserCars { get; set; }
 
         public DbSet<Article> Articles { get; set; }
+
+        public DbSet<Beer> Beers { get; set; }
+
+        public DbSet<BeerRating> BeerRatings { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -80,6 +85,28 @@
                 .HasOne(r => r.Model)
                 .WithMany(u => u.UserReviews)
                 .HasForeignKey(r => r.ModelId);
+
+            builder
+                .Entity<BeerRating>()
+                .HasKey(br => new { br.BeerId, br.UserId });
+
+            builder
+                .Entity<BeerRating>()
+                .HasOne(br => br.Beer)
+                .WithMany(b => b.Ratings)
+                .HasForeignKey(br => br.BeerId);
+
+            builder
+                .Entity<BeerRating>()
+                .HasOne(br => br.User)
+                .WithMany(b => b.BeerRatings)
+                .HasForeignKey(br => br.UserId);
+
+            builder
+                .Entity<Beer>()
+                .HasOne(b => b.Author)
+                .WithMany(u => u.BeersAdded)
+                .HasForeignKey(b => b.AuthorId);
 
             base.OnModelCreating(builder);
         }

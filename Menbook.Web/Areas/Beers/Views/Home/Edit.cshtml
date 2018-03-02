@@ -1,0 +1,52 @@
+﻿@model EditBeerFormViewModel
+@{
+    ViewData["Title"] = $"Edit {Model.Name}";
+}
+
+<h2 class="text-center">@ViewData["Title"]</h2>
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3" style="background-image:url('https://vignette.wikia.nocookie.net/phobia/images/2/2e/Beer.jpg/revision/latest?cb=20161108052500');background-size:cover">
+        <section>
+            <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" placeholder="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Country"></label>
+                    <input asp-for="Country " placeholder="Country" class="form-control" />
+                    <span asp-validation-for="Country" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Type"></label>
+                    <select asp-for="Type" asp-items="@Html.GetEnumSelectList<BeerType>()" class="form-control"></select>
+                    <span asp-validation-for="Type" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AlcoholByVolume"></label>
+                    <input asp-for="AlcoholByVolume" placeholder="Alcohol By Volume" class="form-control" />
+                    <span asp-validation-for="AlcoholByVolume" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImageUrl"></label>
+                    <input asp-for="ImageUrl" placeholder="Image Url" class="form-control" />
+                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group text-right">
+                <input type="hidden" name="id" value="@Model.Id" />
+                <input type="hidden" name="currentPage" value="@Model.CurrentPage" />
+                    <button type="submit" class="btn btn-primary">Save beer</button>
+                </div><br />
+            </form>
+        </section>
+    </div>
+</div>
+<br />
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

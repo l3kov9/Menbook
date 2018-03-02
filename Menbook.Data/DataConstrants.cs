@@ -12,5 +12,11 @@
 
         public const int ArticleTitleMinLength = 3;
         public const int ArticleTitleMaxLength = 50;
+
+        public const int BeerNameMinLength = 2;
+        public const int BeerNameMaxLength = 30;
+
+        public const int BeerCountryMinLength = 3;
+        public const int BeerCountryMaxLength = 30;
     }
 }
