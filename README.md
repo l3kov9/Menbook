@@ -10,3 +10,7 @@ Enjoy!
 ![Main menu](https://image.ibb.co/fkaHYH/main_menu.png)
 
 ![Car menu](https://image.ibb.co/eFRkLx/car_menu.png)
+
+![Beer Calculator](https://ibb.co/c8zAsn)
+
+![Beers](https://ibb.co/cZqYCn)
