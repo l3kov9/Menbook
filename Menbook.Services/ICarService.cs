@@ -39,5 +39,7 @@
         Task<bool> PostReviewAsync(string userId, int modelId, string review);
 
         Task<IEnumerable<string>> UserReviewsIdsAsync(int id);
+
+        Task<bool> AddModelToMakeAsync(int makeId, string name, string imageUrl);
     }
 }

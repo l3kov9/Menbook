@@ -49,7 +49,7 @@
                     Type = b.Type,
                     Author = b.Author.UserName,
                     AuthorId = b.AuthorId,
-                    AverageRate = b.Ratings.Average(r => r.Rate)
+                    AverageRate = b.Ratings.Any() ? b.Ratings.Sum(r => r.Rate) / b.Ratings.Count() : 0.0
                 })
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)

@@ -38,30 +38,48 @@
                 <div class="panel panel-primary panel-front">
                     <div class="text-center">
                         <div class="col-md-12 text-center">
-                            @{var avgStars = $"{beer.AverageRate:f2}"; }
-                            <div class="btn btn-success">Average rating: @avgStars stars</div>
-                            @if (Model.CurrentUserRatedBeerIds.ContainsKey(beer.Id))
+                            @if (beer.AverageRate < 1)
                             {
-                                <h5 style="height:22px;" class="text-danger">You have already rated this beer with @Model.CurrentUserRatedBeerIds[beer.Id] stars</h5>
+                                <div class="btn btn-danger">Be the first to vote for this beer!</div>
                             }
                             else
                             {
-                                <div class="col-md-12 text-center">
-                                    @for (int i = 1; i <= 5; i++)
-                                    {
-                                        <form asp-action="RateBeer" method="post" class="col-md-2">
-                                            <input type="hidden" name="id" value="@beer.Id" />
-                                            <input type="hidden" name="rating" value="@i" />
-                                            <input type="hidden" name="currentPage" value="@Model.CurrentPage" />
-                                            <button type="submit" class="btn btn-success btn-sm">@i<img src="http://img.first-jump.com/icons/file/oxygen/128/actions/bookmark.png" width="30" /></button>
-                                        </form>
-                                    }
+                                var avgStars = $"{beer.AverageRate:f2}"; 
+                                <div class="btn btn-success">Average rating: @avgStars stars</div>
+                            }
+                            @if (User.Identity.IsAuthenticated)
+                            {
+
+                                @if (Model.CurrentUserRatedBeerIds.ContainsKey(beer.Id))
+                                {
+                                    <h5 style="height:22px;" class="text-danger">You have already rated this beer with @Model.CurrentUserRatedBeerIds[beer.Id] stars</h5>
+                                }
+                                else
+                                {
+                                    <div class="col-md-12 text-center">
+                                        @for (int i = 1; i <= 5; i++)
+                                        {
+                                            <form asp-action="RateBeer" method="post" class="col-md-2">
+                                                <input type="hidden" name="id" value="@beer.Id" />
+                                                <input type="hidden" name="rating" value="@i" />
+                                                <input type="hidden" name="currentPage" value="@Model.CurrentPage" />
+                                                <button type="submit" class="btn btn-success btn-sm">@i<img src="http://img.first-jump.com/icons/file/oxygen/128/actions/bookmark.png" width="30" /></button>
+                                            </form>
+                                        }
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div class="row">
+                                    <a asp-area="" asp-controller="Account" asp-action="Login" asp-route-returnurl="@Html.ViewContext.HttpContext.Request.Path" class="btn btn-info">Login to Vote</a>
+                                    <a asp-area="" asp-controller="Account" asp-action="Register" asp-route-returnurl="@Html.ViewContext.HttpContext.Request.Path" class="btn btn-info">Register to Vote</a>
                                 </div>
                             }
                         </div>
                     </div>
                     <div class="panel-heading">
-                        <h4 class="panel-title text-center"><a HREF="#"><img src="@beerImage" height="250px" style="max-width:100%"></a></h4>
+                        <h4 class="panel-title text-center"><img src="@beerImage" height="250px" style="max-width:100%"></h4>
                     </div>
                     <div class="panel-body" style="background-color:lightblue">
                         <h3 class="text-center" style="height:25px">

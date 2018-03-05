@@ -1,17 +1,18 @@
 ﻿@model CarModelListingViewModel
 @{
     ViewData["Title"] = $"{Model.MakeName}";
-}
+}    
 <br />
 <div class="">
-    <a asp-controller="Makes" asp-action="Index" class="btn btn-primary">Back to Makes</a>
+    <a asp-action="Create" class="btn btn-primary">Add Model</a>
+    <a asp-controller="Makes" asp-action="Index" class="btn btn-warning">Back to Makes</a>
 </div>
 <br />
 @foreach (var car in Model.Models)
 {
     var carImageUrl = car.ImageUrl == null ? "http://forevervacationrentals.com/images/no-image-available2.jpg" : car.ImageUrl;
     var averageRate = $"Average Rating - {Model.AverageRating[car.Id]:F1}";
-    <div class="col-md-6">
+    <div class="col-md-6" id="@car.Id">
         <div class="panel panel-default panel-front" style="height:600px;">
             <h2 class="text-center text-success">@Model.MakeName <em>@car.Name</em></h2>
             <h5 class="text-center text-info">@(Model.AverageRating[car.Id] > 0 ? @averageRate : "Be the first to rate this car") <img src="http://img.first-jump.com/icons/file/oxygen/128/actions/bookmark.png" width="20" /></h5>
@@ -44,7 +45,7 @@
             }
 
             <div class="panel-heading" style="height:260px">
-                <a asp-action="Details" asp-route-id="@car.Id"><img style='width: 100%;' src="@carImageUrl" height="250" alt="@Model.MakeName @car.Name"></a>
+                <a asp-action="Details" asp-route-id="@car.Id" asp-route-title="@car.Name.ToFriendlyUrl()"><img style='width: 100%;' src="@carImageUrl" height="250" alt="@Model.MakeName @car.Name"></a>
             </div>
 
             @if (User.Identity.IsAuthenticated)

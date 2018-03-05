@@ -257,5 +257,28 @@
                 .Makes
                 .Where(m => m.Name.ToLower().Contains(search.ToLower()))
                 .CountAsync();
+
+        public async Task<bool> AddModelToMakeAsync(int makeId, string name, string imageUrl)
+        {
+            var makeExists = this.db.Makes.Find(makeId);
+
+            if(makeExists == null)
+            {
+                return false;
+            }
+
+            var carModel = new Model
+            {
+                MakeId = makeId,
+                Name = name,
+                ImageUrl = imageUrl
+            };
+
+            await this.db.AddAsync(carModel);
+
+            await this.db.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

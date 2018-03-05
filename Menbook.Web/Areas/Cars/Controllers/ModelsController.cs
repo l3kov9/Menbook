@@ -1,7 +1,7 @@
 ﻿namespace Menbook.Web.Areas.Cars.Controllers
 {
-    using Menbook.Data.Models;
-    using Menbook.Web.Helpers.Extensions;
+    using Data.Models;
+    using Helpers.Extensions;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -14,7 +14,7 @@
         private readonly ICarService cars;
         private readonly IUserService users;
         private readonly UserManager<User> userManager;
-
+        
         public ModelsController(ICarService cars, IUserService users, UserManager<User> userManager)
         {
             this.cars = cars;
@@ -32,6 +32,38 @@
                 UserRateIds = await this.users.AllRatesIdsAsync(this.userManager.GetUserId(User)),
                 AverageRating = await this.cars.AverageRateListingByIdAsync(id)
             });
+
+        [Authorize]
+        [Route("/cars/models/{id}/create")]
+        public async Task<IActionResult> Create(int id)
+        {
+            return View(new CreateModelFormViewModel
+            {
+                MakeId = id
+            });
+        }
+
+        [Authorize]
+        [HttpPost]
+        [Route("/cars/models/{id}/create")]
+        public async Task<IActionResult> Create(CreateModelFormViewModel carModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(carModel);
+            }
+
+            var success = await this.cars.AddModelToMakeAsync(carModel.MakeId, carModel.Name, carModel.ImageUrl);
+
+            if (!success)
+            {
+                return BadRequest();
+            }
+
+            var id = carModel.MakeId;
+
+            return RedirectToAction(nameof(Index), new { id });
+        }
 
         [Route("/cars/models/details/{id}")]
         public async Task<IActionResult> Details(int id)
@@ -98,7 +130,7 @@
 
             TempData.AddSuccessMessage($"You successfully added {Make} to your cars!");
 
-            return RedirectToAction(nameof(Index),new { id });
+            return Redirect($"/cars/models/{id}#{Id}");
         }
 
         [Authorize]

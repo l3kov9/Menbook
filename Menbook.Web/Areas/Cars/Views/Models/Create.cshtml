@@ -1,0 +1,39 @@
+﻿@model CreateModelFormViewModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create Model</h2>
+
+<div class="row" >
+    <div class="col-md-8 col-md-offset-2" style="height:460px; background-image:url('http://i.ebayimg.com/images/i/292446975532-0-1/s-l1000.jpg');background-size:cover;">
+        <section>
+            <br /><br />
+            <form method="post">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" placeholder="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImageUrl"></label>
+                    <input asp-for="ImageUrl" placeholder="Image Url" class="form-control" />
+                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                </div>
+                <input type="hidden" name="MakeId" value="@Model.MakeId" />
+                <br /><br />
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary">Save Model</button>
+                </div><br />
+            </form>
+        </section>
+    </div>
+</div>
+<br />
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
+
+

@@ -39,14 +39,15 @@
                     </form>
                 }
                 <div class="card-block">
+                    <br />
                     <h1 class="card-title text-center"><strong>@article.Title</strong></h1><br />
                     <div class="text-right">
                         <br />
                         <em>
                             Author: @article.Author
                             <br />published on @article.PublishDate.ToShortDateString()
-                        </em><br />
-                    </div><br /><br />
+                        </em>
+                    </div><br />
                     <p class="card-text"><a asp-action="Details" asp-route-id="@article.Id" class="btn btn-success  form-control">Read More ...</a></p>
                 </div>
             </div>

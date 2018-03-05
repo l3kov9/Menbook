@@ -66,16 +66,16 @@
             <div class="well well-sm" style="background-color:lightskyblue">
                 <div class="row">
                     <div class="col-sm-6 col-md-5" style="margin:20px">
-                        <img src="@carImageUrl" alt="@car.Make @car.Model" class="img-circle img-responsive" />
+                        <a asp-controller="Models" asp-action="Details" asp-route-id="@car.ModelId" asp-route-make="@car.Make.ToFriendlyUrl()" asp-route-model="@car.Model.ToFriendlyUrl()"><img src="@carImageUrl" alt="@car.Make @car.Model" class="img-circle img-responsive" /></a>
                     </div>
                     <br /><br /><br />
                     <div class="col-sm-6 col-md-5 col-md-offset-1">
                         <br /><br />
                         <h1 class="text-center">
-                            @car.Make @car.Model
-                        </h1>
+                            <a asp-controller="Models" asp-action="Details" asp-route-id="@car.ModelId" asp-route-make="@car.Make.ToFriendlyUrl()" asp-route-model="@car.Model.ToFriendlyUrl()">@car.Make @car.Model</a>
+</h1>
                         <h3 class="text-center">
-                            <img src="http://img.first-jump.com/icons/file/oxygen/128/actions/bookmark.png" width="30" /><strong>@car.AverageRating stars</strong> - <em>Total Votes</em>: @car.TotalVotes<br /><br />
+                            <img src="http://img.first-jump.com/icons/file/oxygen/128/actions/bookmark.png" width="30" /><strong>@($"{car.AverageRating:F2}") stars</strong> - <em>Total Votes</em>: @car.TotalVotes<br /><br />
                         </h3>
                         <br /><br />
                         <p>

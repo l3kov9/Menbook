@@ -1,7 +1,7 @@
 ﻿namespace Menbook.Web.Controllers
 {
     using Data.Models;
-    using Menbook.Services;
+    using Services;
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
