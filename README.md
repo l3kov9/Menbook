@@ -1,5 +1,8 @@
 # Welcome to Menbook
 
+[![Build status](https://ci.appveyor.com/api/projects/status/617ltnv3ihloay14?svg=true)](https://ci.appveyor.com/project/l3kov9/menbook)
+
+
 It's a free web app with ASP.NET Core for having a great time.
 Register and enjoy our car park, post some articles in the blog,
 rate and enjoy our beer fest.

@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Menbook.Web", "Menbook.Web\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Menbook.Data", "Menbook.Data\Menbook.Data.csproj", "{049F2533-8C6D-40F0-96F9-F3B3E02484A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Menbook.Services", "Menbook.Services\Menbook.Services.csproj", "{9445170D-0B5C-427A-97F6-515CB18FD3CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Menbook.Services", "Menbook.Services\Menbook.Services.csproj", "{9445170D-0B5C-427A-97F6-515CB18FD3CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Menbook.Common", "Menbook.Common\Menbook.Common.csproj", "{1F26F49C-18C7-4476-A706-D4AF55BDF4E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Menbook.Common", "Menbook.Common\Menbook.Common.csproj", "{1F26F49C-18C7-4476-A706-D4AF55BDF4E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Menbook.Test", "Menbook.Test\Menbook.Test.csproj", "{6288D176-4F89-41B8-B554-F627C8FC741D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{1F26F49C-18C7-4476-A706-D4AF55BDF4E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F26F49C-18C7-4476-A706-D4AF55BDF4E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F26F49C-18C7-4476-A706-D4AF55BDF4E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6288D176-4F89-41B8-B554-F627C8FC741D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6288D176-4F89-41B8-B554-F627C8FC741D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6288D176-4F89-41B8-B554-F627C8FC741D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6288D176-4F89-41B8-B554-F627C8FC741D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
