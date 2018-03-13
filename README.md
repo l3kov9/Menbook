@@ -14,6 +14,16 @@ Enjoy!
 
 ![Car menu](https://image.ibb.co/eFRkLx/car_menu.png)
 
+![Comment Car](https://image.ibb.co/d5QOCx/comment_cars.png)
+
+![Top Cars](https://image.ibb.co/m3u0sx/top_cars_by_vote.png)
+
+![Beer Main Menu](https://image.ibb.co/fH40sx/beer_drinking.png)
+
 ![Beer Calculator](https://image.ibb.co/fMtEJS/beer_calculator.png)
 
 ![Beers](https://image.ibb.co/eNs257/menbook_beers.png)
+
+![Blog](https://image.ibb.co/dkSEKc/Articles.png)
+
+![Comments](https://image.ibb.co/eUh9kH/what_people_say.png)

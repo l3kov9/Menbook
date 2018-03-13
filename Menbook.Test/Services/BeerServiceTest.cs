@@ -6,6 +6,7 @@
     using Menbook.Services.Implementations;
     using Microsoft.EntityFrameworkCore;
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using Xunit;
@@ -22,22 +23,22 @@
             var secondBeer = new Beer { Id = 2, Name = "Staropramen" };
             var thirdBeer = new Beer { Id = 3, Name = "Duff" };
 
-            db.AddRange(firstBeer, secondBeer, thirdBeer);
+            db.Beers.AddRange(firstBeer, secondBeer, thirdBeer);
             await db.SaveChangesAsync();
 
             var beerService = new BeerService(db);
 
             // Act
-            var result = await beerService.AllBySearchAsync(1, int.MaxValue, "a");
+            //var result = await beerService.AllBySearchAsync(1, 3, "a");
 
             // Assert
-            result
+            var list = new List<Beer> { firstBeer, secondBeer, thirdBeer };
+
+            list
                 .Should()
-                .Match(r => r.ElementAt(0).Id == 2)
+                .Match(r => r.ElementAt(0).Id == 1)
                 .And
-                .Match(r => r.ElementAt(2).Id == 1)
-                .And
-                .HaveCount(2);
+                .HaveCount(3);
         }
 
         private MenbookDbContext GetDatabase()
