@@ -17,7 +17,9 @@ Enjoy!
 
 ![Main menu](https://image.ibb.co/fkaHYH/main_menu.png)
 
-![Car menu](https://image.ibb.co/eFRkLx/car_menu.png)
+![Car menu](https://image.ibb.co/dSEM2x/models.png)
+
+![Makes menu](https://image.ibb.co/j5K4Nx/Untitled.png)
 
 ![Comment Car](https://image.ibb.co/d5QOCx/comment_cars.png)
 
