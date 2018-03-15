@@ -4,9 +4,14 @@
 
 
 It's a free web app with ASP.NET Core for having a great time.
-Register and enjoy our car park, post some articles in the blog,
-rate and enjoy our beer fest.
+
+Register and enjoy our car park, where you can find over 70 makes and 1400 models,
+vote and write reviews for them, add new makes and have fun.
+Rate and enjoy our beer fest. Add more beers, so our fest gets better and better.
+Post some articles in the blog to all themes you want
+
 Enjoy!
+
 
 ![Home page](https://image.ibb.co/hHp5Lx/menbook_start.png)
 
