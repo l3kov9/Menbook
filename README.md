@@ -17,13 +17,13 @@ Enjoy!
 
 ![Main menu](https://image.ibb.co/fkaHYH/main_menu.png)
 
+![Top Cars](https://image.ibb.co/m3u0sx/top_cars_by_vote.png)
+
 ![Car menu](https://image.ibb.co/dSEM2x/models.png)
 
 ![Makes menu](https://image.ibb.co/j5K4Nx/Untitled.png)
 
 ![Comment Car](https://image.ibb.co/d5QOCx/comment_cars.png)
-
-![Top Cars](https://image.ibb.co/m3u0sx/top_cars_by_vote.png)
 
 ![Beer Main Menu](https://image.ibb.co/fH40sx/beer_drinking.png)
 
