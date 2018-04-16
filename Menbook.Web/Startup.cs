@@ -45,7 +45,7 @@
             services.AddAuthentication().AddGoogle(go =>
             {
                 go.ClientId = "0000";
-                go.ClientSecret = "0000";
+                go.ClientSecret = "0000"; 
             });
 
             services.AddAutoMapper();
